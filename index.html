@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>TLDR Command Cheatsheets – Simple Linux Man Pages for Developers</title>
+    <meta name="description" content="A minimal, fast-loading collection of simplified Linux/Unix man pages based on TLDR-pages Including Windows, macOS. Easily find simplified terminal examples, syntax, and usage for over 5,900 commands. Always up-to-date and mobile-friendly.">
+    <meta name="keywords" content="tldr, command man pages, simplified commands, linux command man pages, windows, macos, android, unix man pages, linux man pages, terminal, shell, bash, sh, zsh, system administration, devops, sysadmin, cli, command line reference, Linux command cheatsheet, MagnetByte">
+    <meta name="author" content="MagnetByte">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="TLDR Commands – Simplified Linux and Windows Command Man Pages">
+    <meta property="og:description" content="Quick command line reference for Linux, Windows, macOS, Android, BSD & more. Trusted cheat sheet for developers and sysadmins.">
+    <meta property="og:url" content="https://tldr.magnetbyte.com">
+    <meta property="og:site_name" content="TLDR Commands by MagnetByte">
+    <meta property="og:image" content="https://tldr.magnetbyte.com/og-image.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="TLDR Commands – Simplified Command Linux Man Pages">
+    <meta name="twitter:description" content="Linux Command man pages with practical examples, Including Linux, Windows, macOS, BSD, Android and more. Trusted by developers worldwide.">
+    <!-- Canonical to avoid duplicate issues -->
+    <link rel="canonical" href="https://tldr.magnetbyte.com">
+    <!-- (Optionally, include JSON-LD as before for structured data) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "TLDR Commands",
+  "description": "Simplified TLDR command man pages for Linux, Windows, macOS, Android, FreeBSD, NetBSD, OpenBSD, SunOS and more. Fast, expert-curated CLI reference.",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Linux, Windows, macOS, Android, FreeBSD, NetBSD, OpenBSD, SunOS",
+  "offers": {
+    "@type": "Offer",
+    "price": "0"
+  },
+  "creator": {
+    "@type": "Organization",
+    "name": "MagnetByte"
+  }
+}
+</script>
+
+    
+    <!-- PWA Meta -->
+    <meta name="theme-color" content="#2563eb">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="canonical" href="https://tldr.magnetbyte.com">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- FIXED: Absolute path for CSS -->
+    <link rel="stylesheet" href="/style.css">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6166035924691975" crossorigin="anonymous"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="header-title" onclick="showHome()">
+                <h1>TLDR Commands</h1>
+                <span class="header-subtitle">by MagnetByte</span>
+            </div>
+            <div class="header-controls">
+                <div class="search-status">
+                    <span id="searchStatusText">Search ready</span>
+                    <span class="language-status">English</span>
+                    
+                </div>
+                <button id="themeToggle" class="btn btn--outline btn--sm" title="Toggle theme">🌙</button>
+            </div>
+        </div>
+        
+
+    </header>
+        <!-- Header Ad -->
+        <div class="ad-container">
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:970px;height:90px"
+                 data-ad-client="ca-pub-6166035924691975"
+                 data-ad-slot="9847771750"></ins></ins>
+</div>
+    <div class="main-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-content">
+                <!-- Platform Selection -->
+                <div class="sidebar-section expanded" data-section="platforms">
+                    <button class="sidebar-section-header">
+                        <span>💻 Platforms</span>
+                        <span class="sidebar-section-arrow">▼</span>
+                    </button>
+                    <div class="sidebar-section-content" id="platforms-content">
+                        <div class="selected-platforms-summary">
+                            <span id="selectedPlatformsText">4 platforms selected</span>
+                        </div>
+                        <div class="platform-checkboxes">
+                            <!-- Populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Categories -->
+                <div class="sidebar-section" data-section="categories">
+                    <button class="sidebar-section-header">
+                        <span>📂 Categories</span>
+                        <span class="sidebar-section-arrow">▼</span>
+                    </button>
+                    <div class="sidebar-section-content" id="categories-content">
+                        <!-- Populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Sidebar Ad -->
+                <div class="ad-container ad-sidebar">
+                        <ins class="adsbygoogle"
+                             style="display:block"
+                             data-ad-client="ca-pub-6166035924691975"
+                             data-ad-slot="9745066101"
+                             data-ad-format="auto"
+                             data-full-width-responsive="true"></ins>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Search Section -->
+            <div class="search-section">
+                <div class="search-container">
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search 5900+ commands..." autocomplete="off">
+                    <button class="search-button" onclick="performSearch()">Search</button>
+                </div>
+                <div id="searchSuggestions" class="search-suggestions"></div>
+            </div>
+
+            <!-- Status Messages -->
+            <div id="statusMessage" class="status-message" style="display: none;">
+                <span id="statusText">Loading...</span>
+            </div>
+            <!-- Google Ads by me after search-->
+            <div class="ad-container">
+            <ins class="adsbygoogle"
+                    style="display:inline-block;width:728px;height:90px"
+                    data-ad-client="ca-pub-6166035924691975"
+                    data-ad-slot="4002508583"></ins>
+            </div>
+            <!-- Welcome Screen -->
+            <div id="welcomeScreen" class="welcome-screen">
+                <div class="welcome-hero">
+                   <h2>Professional, Simplified Command Line Reference</h2>
+                    <p class="welcome-subtitle">
+  Instantly access expert-curated, practical examples for thousands of command-line tools across Linux, Windows, macOS, Android, BSD, and more. Our database is continuously updated from the official TLDR repository to keep you current and productive.
+</p>
+                    
+                    <div class="welcome-features">
+                        <div class="feature-card">
+                            <div class="feature-icon">🔍</div>
+                            <h3>Smart Multi-Platform Search</h3>
+                            <p>Easily find commands across Linux, Windows, macOS, Android, BSD, and more with intelligent, instant suggestions.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📱</div>
+                            <h3>Works Offline as a PWA</h3>
+                            <p>Install the Progressive Web App once and access thousands of commands anytime—no internet connection required after the first load.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">📋</div>
+                            <h3>Comprehensive, Copy-Ready Examples</h3>
+                            <p>Get full, detailed command usage with clear examples designed for quick copying and seamless terminal use.</p>
+                        </div>
+                        <div class="feature-card">
+                            <div class="feature-icon">⚡</div>
+                            <h3>Continuously Updated Command Database</h3>
+                            <p>Powered by the official TLDR repository, our command collection is refreshed daily to keep you up to date.</p>
+                        </div>
+                    </div>
+
+                    <div class="popular-commands">
+                        <h3>Popular Commands</h3>
+                        <div class="command-tags">
+                            <button class="command-tag" onclick="searchCommand('ls')">ls</button>
+                            <button class="command-tag" onclick="searchCommand('grep')">grep</button>
+                            <button class="command-tag" onclick="searchCommand('find')">find</button>
+                            <button class="command-tag" onclick="searchCommand('curl')">curl</button>
+                            <button class="command-tag" onclick="searchCommand('git')">git</button>
+                            <button class="command-tag" onclick="searchCommand('docker')">docker</button>
+                            <button class="command-tag" onclick="searchCommand('ssh')">ssh</button>
+                            <button class="command-tag" onclick="searchCommand('tar')">tar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search Results -->
+            <div id="searchResults" class="search-results" style="display: none;">
+                <!-- Populated by JavaScript -->
+            </div>
+
+            <!-- Command Display -->
+            <div id="commandDisplay" class="command-display" style="display: none;">
+                <!-- Populated by JavaScript -->
+            </div>
+
+            <!-- No Results -->
+            <div id="noResults" class="no-results" style="display: none;">
+                <div class="no-results-content">
+                    <div class="no-results-icon">🔍</div>
+                    <h3>No Commands Found</h3>
+                    <p>The command you're looking for wasn't found in the selected platforms.</p>
+                    <p><strong>Tip:</strong> Try selecting additional platforms from the sidebar to expand your search.</p>
+                </div>
+            </div>
+
+            <!-- Content Ad -->
+            <div class="ad-container ad-content">
+                <ins class="adsbygoogle"
+                    style="display:inline-block;width:728px;height:90px"
+                    data-ad-client="ca-pub-6166035924691975"
+                    data-ad-slot="4002508583"></ins>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+               <h4>About TLDR Commands</h4>
+                <p>Your trusted, concise command-line reference, curated and maintained by experts. All content is sourced directly from the official <a href="https://github.com/tldr-pages/tldr" target="_blank" rel="noopener">tldr-pages GitHub repository</a>, ensuring accuracy and up-to-date information.</p>
+                <p><strong>Last updated:</strong> <span id="lastUpdated">Loading...</span></p>
+            </div>
+            <div class="footer-section">
+                <h4>About MagnetByte</h4>
+                <p>Leading experts in web development and innovative developer tools, dedicated to empowering your workflow.</p>
+                <p><a href="https://www.magnetbyte.com" target="_blank" rel="noopener">Explore MagnetByte</a></p>   
+            </div>
+           <div class="footer-section">
+                <h4>Technical Details</h4>
+                    <p>✅ <strong id="commandCount">0</strong> commands loaded</p>
+                    <p>✅ Progressive Web App (PWA) enabled for offline access</p>
+                    <p>✅ Efficient data caching for faster performance</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 MagnetByte. Expert-curated command-line reference tailored for system administrators and DevOps engineers.</p>
+        </div>
+<div class="footer-recommended" style="margin: 10px 0; text-align: center;">
+  <nav aria-label="Additional site links">
+    <ul class="footer-links-list">
+      <li><a href="https://www.magnetbyte.com/about-us" target="_blank" rel="noopener noreferrer">About Us</a></li>
+      <li><a href="https://www.magnetbyte.com/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a></li>
+      <li><a href="https://www.magnetbyte.com/terms-and-conditions" target="_blank" rel="noopener noreferrer">Terms of Service</a></li>
+      <li><a href="https://www.magnetbyte.com/dmca" target="_blank" rel="noopener noreferrer">DMCA</a></li>
+      <li><a href="https://www.magnetbyte.com/cookie-policy" target="_blank" rel="noopener noreferrer">Cookies Policy</a></li>
+    </ul>
+  </nav>
+</div>
+<div class="footer-recommended" style="margin: 40px 0;">
+  <h4 style="text-align: center; font-size: 16px; color: #3b82f6; font-weight: 600; margin-bottom: 12px;">
+    Recommended by MagnetByte
+  </h4>
+  <ul class="recommended-links-list">
+    <li><a href="https://www.magnetbyte.com/linux" target="_blank" rel="noopener noreferrer">Linux Tutorials Guides</a></li>
+    <li><a href="https://www.magnetbyte.com/wordpress" target="_blank" rel="noopener noreferrer">Wordpress Tutorials</a></li>
+    <li><a href="https://www.magnetbyte.com/web-hosting/hosting-reviews" target="_blank" rel="noopener noreferrer">Web Hosting Review</a></li>
+    <li><a href="https://www.magnetbyte.com/linux/rhcsa" target="_blank" rel="noopener noreferrer">RHCSA Questions</a></li>
+    <li><a href="https://www.magnetbyte.com/linux/howto" target="_blank" rel="noopener noreferrer">Linux HowTos</a></li>
+  </ul>
+</div>
+
+<!-- Google AdSense Multiplex Ad for Recommended Pages -->
+<div class="recommended-pages-ad" style="margin: 10px 0 20px 0;">
+    <!-- Replace the data-ad-slot value with your own from AdSense -->
+    <ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6166035924691975"
+     data-ad-slot="9745066101"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</div>
+    </footer>
+
+    <!-- Scripts with absolute paths -->
+    <script src="https://unpkg.com/jszip@3.10.1/dist/jszip.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
+    <script src="/app.js"></script>
+    
+    <!-- Initialize AdSense -->
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        (adsbygoogle = window.adsbygoogle || []).push({});
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
