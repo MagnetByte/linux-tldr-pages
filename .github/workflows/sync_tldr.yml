@@ -1,0 +1,39 @@
+name: Sync TLDR Pages Daily
+
+on:
+  schedule:
+    # Runs daily at 07:30 UTC 1AM IST
+    - cron: '30 7 * * *'
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          # Required for pushing changes later
+          persist-credentials: true  
+
+      - name: Download latest tldr-pages.en.zip
+        run: |
+          curl -L -o tldr-pages.en.zip https://github.com/tldr-pages/tldr/releases/latest/download/tldr-pages.en.zip
+
+      - name: Check for changes
+        id: changes
+        run: |
+          git add tldr-pages.en.zip
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changes_detected=true" >> $GITHUB_OUTPUT
+          else
+            echo "changes_detected=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Commit and push changes
+        if: steps.changes.outputs.changes_detected == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git commit -m "chore: daily sync tldr-pages.en.zip"
+          git push
