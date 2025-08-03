@@ -98,11 +98,24 @@ class TLDRApp {
         this.handleRoute();
         
         // Start background data loading
-        setTimeout(() => {
-            this.loadTLDRDataInBackground();
-        }, 100);
+        // Check if device is mobile for performance optimization
+        if (this.isMobileDevice()) {
+            // Delay loading on mobile devices to improve initial render
+            setTimeout(() => {
+                this.loadTLDRDataInBackground();
+            }, 1000);
+        } else {
+            setTimeout(() => {
+                this.loadTLDRDataInBackground();
+            }, 100);
+        }
 
         console.log('✅ TLDR App initialized - UI ready, data loading in background');
+    }
+
+    // Check if device is mobile for performance optimization
+    isMobileDevice() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     }
 
     // Setup URL routing
