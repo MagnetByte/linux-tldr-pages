@@ -40,15 +40,21 @@
 }
 </script>
 
-    
-    <!-- PWA Meta -->
-    <meta name="theme-color" content="#2563eb">
-    <link rel="manifest" href="/manifest.json">
-    <link rel="canonical" href="https://tldr.magnetbyte.com">
-    
-    <!-- Favicon -->
-    <link rel="icon" href="/favicon.ico" type="image/x-icon">
-    
+<!-- Favicon -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<!-- PWA Manifest Icons -->
+<link rel="manifest" href="/manifest.json">
+<link rel="canonical" href="https://tldr.magnetbyte.com">
+
+<!-- Meta Tags -->
+<meta name="theme-color" content="#2563eb">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="TLDR Commands">
+
     <!-- FIXED: Absolute path for CSS -->
     <link rel="stylesheet" href="/style.css">
     
@@ -116,11 +122,12 @@
                 <!-- Sidebar Ad -->
                 <div class="ad-container ad-sidebar">
                         <ins class="adsbygoogle"
-                             style="display:block"
-                             data-ad-client="ca-pub-6166035924691975"
-                             data-ad-slot="9745066101"
-                             data-ad-format="auto"
-                             data-full-width-responsive="true"></ins>
+                              style="display:block;width:300px;height:250px"
+                              data-ad-client="ca-pub-6166035924691975"
+                              data-ad-slot="9745066101"></ins>
+                        <script>
+                            (adsbygoogle = window.adsbygoogle || []).push({});
+                        </script>
                 </div>
             </div>
         </aside>
@@ -150,7 +157,7 @@
             <!-- Welcome Screen -->
             <div id="welcomeScreen" class="welcome-screen">
                 <div class="welcome-hero">
-                   <h2>Professional, Simplified Command Line Reference</h2>
+                   <h2>TLDR for Terminal: Fast Simplified Command Help for Linux, Windows and MacOS</h2>
                     <p class="welcome-subtitle">
   Instantly access expert-curated, practical examples for thousands of command-line tools across Linux, Windows, macOS, Android, BSD, and more. Our database is continuously updated from the official TLDR repository to keep you current and productive.
 </p>
@@ -259,7 +266,7 @@
   </nav>
 </div>
 <div class="footer-recommended" style="margin: 40px 0;">
-  <h4 style="text-align: center; font-size: 16px; color: #3b82f6; font-weight: 600; margin-bottom: 12px;">
+  <h4 style="text-align: center; font-size: 16px; color: #ffffff; font-weight: 600; margin-bottom: 12px;">
     Recommended by MagnetByte
   </h4>
   <ul class="recommended-links-list">
@@ -270,22 +277,18 @@
     <li><a href="https://www.magnetbyte.com/linux/howto" target="_blank" rel="noopener noreferrer">Linux HowTos</a></li>
   </ul>
 </div>
-
+    </footer>
 <!-- Google AdSense Multiplex Ad for Recommended Pages -->
 <div class="recommended-pages-ad" style="margin: 10px 0 20px 0;">
     <!-- Replace the data-ad-slot value with your own from AdSense -->
     <ins class="adsbygoogle"
-     style="display:block"
+     style="display:block;width:728px;height:90px"
      data-ad-client="ca-pub-6166035924691975"
-     data-ad-slot="9745066101"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
+     data-ad-slot="9745066101"></ins>
     <script>
          (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 </div>
-    </footer>
-
     <!-- Scripts with absolute paths -->
     <script src="https://unpkg.com/jszip@3.10.1/dist/jszip.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/showdown@2.1.0/dist/showdown.min.js"></script>
@@ -293,7 +296,6 @@
     
     <!-- Initialize AdSense -->
     <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
         (adsbygoogle = window.adsbygoogle || []).push({});
         (adsbygoogle = window.adsbygoogle || []).push({});
         (adsbygoogle = window.adsbygoogle || []).push({});
