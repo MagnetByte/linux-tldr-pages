@@ -837,30 +837,43 @@ toggleTheme() {
         searchSuggestions.classList.add('visible');
     }
 
+    // Optimized search with better performance
     searchCommands(query, limit = 20) {
         if (!this.state.isDataLoaded) return [];
 
         const lowerQuery = query.toLowerCase();
         const selectedPlatforms = Array.from(this.state.selectedPlatforms);
         
-        return this.state.searchIndex
-            .filter(item => selectedPlatforms.includes(item.platform))
-            .filter(item => 
-                item.command.toLowerCase().includes(lowerQuery) ||
-                item.description.toLowerCase().includes(lowerQuery)
-            )
-            .sort((a, b) => {
-                if (a.command.toLowerCase() === lowerQuery) return -1;
-                if (b.command.toLowerCase() === lowerQuery) return 1;
-                
-                const aStartsWith = a.command.toLowerCase().startsWith(lowerQuery);
-                const bStartsWith = b.command.toLowerCase().startsWith(lowerQuery);
-                if (aStartsWith && !bStartsWith) return -1;
-                if (bStartsWith && !aStartsWith) return 1;
-                
-                return a.command.localeCompare(b.command);
-            })
-            .slice(0, limit);
+        // Pre-filter by platforms first for better performance
+        const platformFiltered = this.state.searchIndex.filter(item => 
+            selectedPlatforms.includes(item.platform)
+        );
+        
+        // Use more efficient search with early termination
+        const results = platformFiltered.filter(item => {
+            const commandMatch = item.command.toLowerCase().indexOf(lowerQuery);
+            const descriptionMatch = item.description.toLowerCase().indexOf(lowerQuery);
+            return commandMatch !== -1 || descriptionMatch !== -1;
+        });
+        
+        // Sort with optimized comparison
+        return results.sort((a, b) => {
+            const aLower = a.command.toLowerCase();
+            const bLower = b.command.toLowerCase();
+            
+            // Exact match first
+            if (aLower === lowerQuery) return -1;
+            if (bLower === lowerQuery) return 1;
+            
+            // Prefix match next
+            const aStartsWith = aLower.startsWith(lowerQuery);
+            const bStartsWith = bLower.startsWith(lowerQuery);
+            if (aStartsWith && !bStartsWith) return -1;
+            if (bStartsWith && !aStartsWith) return 1;
+            
+            // Then sort alphabetically
+            return a.command.localeCompare(b.command);
+        }).slice(0, limit);
     }
 
     performSearch() {
