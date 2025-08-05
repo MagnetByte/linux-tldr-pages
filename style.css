@@ -97,6 +97,56 @@
     box-sizing: border-box;
 }
 
+/* Search container flex layout - FIXED alignment */
+.search-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Search input styling - FIXED consistent height */
+.search-input {
+    flex-grow: 1;
+    height: 50px !important;
+    font-size: 14px !important;
+    padding: 0 12px !important;
+    border: 1px solid var(--color-border) !important;
+    border-radius: 8px !important;
+    box-sizing: border-box !important;
+    background-color: var(--color-surface) !important;
+    color: var(--color-text) !important;
+}
+
+/* Options dropdown styling - FIXED consistent height */
+#optionsModeSelect {
+    width: 120px !important;
+    height: 50px !important;
+    font-size: 14px !important;
+    border-radius: 8px !important;
+    border: 1px solid var(--color-border) !important;
+    background-color: var(--color-surface) !important;
+    color: var(--color-text) !important;
+    cursor: pointer !important;
+    padding: 0 8px !important;
+    box-sizing: border-box !important;
+}
+
+/* Search button styling - FIXED consistent height and alignment */
+.search-button {
+    height: 50px !important;
+    padding: 0 20px !important;
+    font-size: 14px !important;
+}
+.search-button:hover {
+    background-color: var(--color-primary-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(33, 128, 141, 0.2);
+}
+
+.search-button:hover {
+    background-color: var(--color-primary-dark);
+}
+
 body {
     font-family: var(--font-family-base);
     background-color: var(--color-background);
@@ -1216,4 +1266,5 @@ body {
     input, textarea, select {
         font-size: 16px; /* Prevent zoom on focus in iOS Safari */
     }
+    
 }
