@@ -136,11 +136,16 @@
         <main class="content">
             <!-- Search Section -->
             <div class="search-section">
-                <div class="search-container">
-                    <input type="text" id="searchInput" class="search-input" placeholder="Search 5900+ commands..." autocomplete="off">
-                    <button class="search-button" onclick="performSearch()">Search</button>
-                </div>
-                <div id="searchSuggestions" class="search-suggestions"></div>
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search 5900+ commands..." autocomplete="off">
+                <select id="optionsModeSelect" class="search-select" title="Output Type">
+                    <option value="short">Short</option>
+                    <option value="long">Long</option>
+                    <option value="both">Both</option>
+                </select>
+                <button class="search-button" onclick="performSearch()">Search</button>
+            </div>
+            <div id="searchSuggestions" class="search-suggestions"></div>
             </div>
 
             <!-- Status Messages -->
