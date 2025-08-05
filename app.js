@@ -72,7 +72,8 @@ class TLDRApp {
             theme: localStorage.getItem('tldr-theme') || 'auto',
             currentCommand: null,
             currentCategory: null,
-            lastUpdateTime: null
+            lastUpdateTime: null,
+            optionsMode: localStorage.getItem('tldr_options_mode') || 'short'
         };
 
         this.markdownConverter = new showdown.Converter({
@@ -674,6 +675,17 @@ class TLDRApp {
             });
         }
 
+        // Setup options toggle
+        const optionsModeSelect = document.getElementById('optionsModeSelect');
+        if (optionsModeSelect) {
+            optionsModeSelect.value = this.state.optionsMode;
+            optionsModeSelect.addEventListener('change', (e) => {
+                this.state.optionsMode = e.target.value;
+                localStorage.setItem('tldr_options_mode', e.target.value);
+                this.renderCurrentCommand();
+            });
+        }
+
         document.addEventListener('click', (e) => {
             if (e.target.classList.contains('sidebar-section-header') || 
                 e.target.closest('.sidebar-section-header')) {
@@ -692,6 +704,39 @@ class TLDRApp {
 
     toggleSidebarSection(section) {
         section.classList.toggle('expanded');
+    }
+
+    // Utility functions for option processing
+    extractOption(token, mode = "short") {
+        // Remove square brackets from options for cleaner display
+        const stripBrackets = (str) => str.replace(/^\[|\]$/g, '');
+
+        const parts = token.split('|').map(part => stripBrackets(part.trim()));
+
+        if (mode === 'short') return parts[0];
+        if (mode === 'long') return parts[1];
+        // For 'both' mode, join short and long with ' / '
+        if (mode === 'both') return `${parts[0]} / ${parts[1]}`;
+        return parts[0];
+    }
+
+    processOptionLine(line, mode = "short") {
+        // Remove outer {{ and }} and replace with processed option
+        return line.replace(/{{(.*?)}}/g, (match, token) => {
+            if (token.includes('|')) {
+                return this.extractOption(token, mode);
+            }
+            // For tokens without '|', just return the token without brackets
+            return token.trim();
+        });
+    }
+
+    renderCurrentCommand() {
+        if (this.state.currentCommand) {
+            const commandData = this.state.currentCommand;
+            const platform = commandData.platform;
+            this.displayCommand(commandData, platform);
+        }
     }
 
     setupTheme() {
@@ -961,7 +1006,13 @@ toggleTheme() {
         this.state.currentCategory = null;
 
         const platformInfo = this.config.supportedPlatforms.find(p => p.code === platform);
-        const htmlContent = this.markdownConverter.makeHtml(commandData.content);
+
+        // Process command content lines with option toggle
+        const lines = commandData.content.split('\n');
+        const processedLines = lines.map(line => this.processOptionLine(line, this.state.optionsMode));
+        const processedContent = processedLines.join('\n');
+
+        const htmlContent = this.markdownConverter.makeHtml(processedContent);
         
         commandDisplay.innerHTML = `
             <div class="command-header">
