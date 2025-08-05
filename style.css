@@ -107,35 +107,35 @@
 /* Search input styling - FIXED consistent height */
 .search-input {
     flex-grow: 1;
-    height: 50px !important;
-    font-size: 14px !important;
-    padding: 16px 40px !important;
-    border: 1px solid var(--color-border) !important;
-    border-radius: 8px !important;
-    box-sizing: border-box !important;
-    background-color: var(--color-surface) !important;
-    color: var(--color-text) !important;
+    height: 50px;
+    font-size: 14px;
+    padding: 16px 40px;
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: var(--color-surface);
+    color: var(--color-text);
 }
 
 /* Options dropdown styling - FIXED consistent height */
 #optionsModeSelect {
-    width: 120px !important;
-    height: 50px !important;
-    font-size: 14px !important;
-    border-radius: 8px !important;
-    border: 1px solid var(--color-border) !important;
-    background-color: var(--color-surface) !important;
-    color: var(--color-text) !important;
-    cursor: pointer !important;
-    padding: 0 8px !important;
-    box-sizing: border-box !important;
+    width: 120px;
+    height: 50px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid var(--color-border);
+    background-color: var(--color-surface);
+    color: var(--color-text);
+    cursor: pointer;
+    padding: 0 8px;
+    box-sizing: border-box;
 }
 
 /* Search button styling - FIXED consistent height and alignment */
 .search-button {
-    height: 50px !important;
-    padding: 0 20px !important;
-    font-size: 14px !important;
+    height: 50px;
+    padding: 0 20px;
+    font-size: 14px;
 }
 .search-button:hover {
     background-color: var(--color-primary-hover);
@@ -1268,4 +1268,5 @@ body {
     }
     
 }
+
 
